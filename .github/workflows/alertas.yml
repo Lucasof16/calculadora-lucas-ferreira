@@ -1,0 +1,15 @@
+name: Alertas de Commit e Merge
+on:
+  push:
+    branches:
+      - main  # Alerta quando houver push ou merge na main
+
+jobs:
+  notificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enviar Mensagem para o Discord
+        uses: appleboy/discord-action@master
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          message: "🚀 Olá! Um novo merge ou commit foi realizado no branch main do seu repositório de DevOps."
