@@ -1,2 +1,2 @@
 # calculadora-lucas-ferreira
-*Última atualização: Abril de 2026*
+*Última atualização: 22 de Abril de 2026*
