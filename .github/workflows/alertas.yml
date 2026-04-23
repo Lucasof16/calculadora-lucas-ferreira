@@ -1,15 +1,29 @@
-name: Alertas de Commit e Merge
+name: CI e Alertas de Commit
+
 on:
   push:
-    branches:
-      - main  # Alerta quando houver push ou merge na main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ] # Garante a execução na PR
 
 jobs:
-  notificar:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Enviar Mensagem para o Discord
-        uses: appleboy/discord-action@master
-        with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          message: "🚀 Olá! Um novo merge ou commit foi realizado no branch main do seu repositório de DevOps."
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - name: Executar Testes Unitários
+      run: python -m unittest test_calculadora.py
+
+  notificar:
+    needs: build-and-test # Só notifica se o teste passar
+    runs-on: ubuntu-latest
+    steps:
+    - name: Enviar Mensagem para o Discord
+      uses: appleboy/discord-action@master
+      with:
+        webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+        message: "🚀 Testes concluídos e commit/merge realizado no repositório de DevOps!"
