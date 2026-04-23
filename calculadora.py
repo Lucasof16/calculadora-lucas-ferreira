@@ -10,7 +10,7 @@ def multiplica(a, b):
 def divide(a, b):
     if b != 0:
         return a / b
-    raise ValueError("Divisão por zero") # Mude de 'return' para 'raise'
+    raise ValueError("Divisão por zero") 
 
 print("Calculadora pronta!")
 # Exemplo de uso
