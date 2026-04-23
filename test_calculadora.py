@@ -1,5 +1,5 @@
 import unittest
-from calculadora import soma, subtrai, multiplica, divide # Ajuste conforme suas funções
+from calculadora import soma, subtrai, multiplica, divide 
 
 class TestCalculadora(unittest.TestCase):
     def test_soma(self):
