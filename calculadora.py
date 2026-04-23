@@ -15,3 +15,4 @@ def divide(a, b):
 print("Calculadora pronta!")
 # Exemplo de uso
 print(f"Soma de 5+5: {soma(5,5)}")
+# Homologação de testes
